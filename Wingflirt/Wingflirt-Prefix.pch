@@ -1,0 +1,91 @@
+//
+// Prefix header for all source files of the 'Wingflirt' target in the 'Wingflirt' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "UIImage-Additions.h"
+#import "NSArray-Additions.h"
+#import "NSMutableArray-Additions.h"
+#import "UIViewController-Additions.h"
+#import "UIColor-HSVAdditions.h"
+#import "NSDate-Additions.h"
+#import "UIView-Additions.h"
+#import "UILabel-Additions.h"
+#import "NSDictionary-Additions.h"
+#import "NSMutableDictionary-Additions.h"
+#import "NSString-Additions.h"
+#import "UIScrollView_Additions.h"
+#import "UIFont-Additions.h"
+
+#import "WFStyle.h"
+
+#ifdef DEBUG
+#    define DLog(...) NSLog(__VA_ARGS__)
+#else
+#    define DLog(...) /* */
+#endif
+#define ALog(...) NSLog(__VA_ARGS__)
+
+#define SHARED_INSTANCE_USING_BLOCK(block) \
+static dispatch_once_t pred = 0; \
+__strong static id _sharedObject = nil; \
+dispatch_once(&pred, ^{ \
+_sharedObject = block(); \
+}); \
+return _sharedObject; \
+
+#ifdef DEBUG
+#define START_TIMED_TASK NSDate *start = [NSDate date];
+#define END_TIMED_TASK(message, ...) DLog(@"%@ in %fs", message, -[start timeIntervalSinceNow]);
+#else
+#define START_TIMED_TASK
+#define END_TIMED_TASK(message, ...)
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_1
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_1 478.26
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_2
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_2 478.29
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_0 478.47
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_1
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_1 478.52
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_2
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_2 478.61
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_4_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_4_0 550.32
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_5_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_5_0 674.0
+#endif
+
