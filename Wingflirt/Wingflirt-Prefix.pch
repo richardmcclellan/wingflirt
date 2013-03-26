@@ -17,6 +17,9 @@
 
 
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
+
+#import "PFObject+DefaultClassName.h"
 
 #import "UIImage-Additions.h"
 #import "NSArray-Additions.h"
@@ -31,6 +34,9 @@
 #import "NSString-Additions.h"
 #import "UIScrollView_Additions.h"
 #import "UIFont-Additions.h"
+#import "NSObject+BlockCallback.h"
+#import "UIBarButtonItem+Blocks.h"
+
 
 #import "WFStyle.h"
 

@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ListTableView.h"
 
-@interface ListViewController : UIViewController
+@interface ListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PullToRefreshTableViewDelegate> {
+    ListTableView *listTableView;
+    NSArray *messages;
+}
 
 
 

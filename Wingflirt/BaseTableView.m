@@ -19,8 +19,8 @@
         self.dataSource = self;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.showsVerticalScrollIndicator = YES;
-        self.backgroundColor = [WFStyle forecastLighterGrayColor];
-        self.separatorColor = [WFStyle forecastSlightLightGrayColor];
+//        self.backgroundColor = [WFStyle forecastLighterGrayColor];
+//        self.separatorColor = [WFStyle forecastSlightLightGrayColor];
         [self setContentInsetBottom:newStyle == UITableViewStylePlain ? -2 : 0];
     }
     return self;

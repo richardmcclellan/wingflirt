@@ -6,8 +6,13 @@
 //  Copyright (c) 2013 Richard McClellan. All rights reserved.
 //
 
-#import "BaseTableView.h"
+#import "PullToRefreshTableView.h"
+#import "MessageCell.h"
 
-@interface ListTableView : BaseTableView
+@interface ListTableView : PullToRefreshTableView {
+    NSArray *messages;
+}
+
+- (void) configureWithMessages:(NSArray *)aMessages;
 
 @end

@@ -17,6 +17,10 @@
     return self;
 }
 
+- (void) configureWithMessage:(Message *)message {
+    self.textLabel.text = message.text;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

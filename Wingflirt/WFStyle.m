@@ -12,12 +12,12 @@
 
 
 + (UIColor *)bgColor { return [UIColor colorWithHexString:@"E8E3DC"]; }
-+ (UIColor *)textColor { return [UIColor colorWithHexString:@"F9F8F6"]; }
++ (UIColor *)elementColor { return [UIColor colorWithHexString:@"F9F8F6"]; }
 
 + (UIColor *)forecastLighterTintColor{ return RGB(230.0, 240.0, 255.0); }
 + (UIColor *)forecastLightTintColor { return RGB(26.0, 117.0, 187.0); }
 + (UIColor *)forecastSlightLightTintColor { return RGB(26.0, 95.0, 160.0); }
-+ (UIColor *)forecastTintColor { return RGB(25.0, 86.0, 141.0); } //19568D
++ (UIColor *)tintColor { return RGB(30.0,94.0,134.0); }
 + (UIColor *)forecastSlightDarkTintColor { return RGB(24.0, 75.0, 125.0); }
 + (UIColor *)forecastDarkTintColor { return RGB(23.0, 64.0, 110.0); }
 
@@ -30,11 +30,12 @@
 + (UIColor *)forecastSlightDarkGrayColor { return RGB(56, 56, 56); }
 + (UIColor *)forecastDarkGrayColor { return RGB(33, 33, 33); }
 
-+ (UIFont *)giantFont { return [WFStyle forecastFontOfSize:30.0]; }
-+ (UIFont *)largeFont { return [WFStyle boldForecastFontOfSize:15.0]; }
-+ (UIFont *)smallFont { return [WFStyle forecastFontOfSize:13.0]; }
-+ (UIFont *)boldForecastFontOfSize:(CGFloat)size { return [UIFont fontWithName:@"Helvetica-Bold" size:size]; }
-+ (UIFont *)forecastFontOfSize:(CGFloat)size { return [UIFont fontWithName:@"Helvetica" size:size]; }
++ (UIFont *)textViewFont { return [WFStyle boldFontOfSize:17.0]; }
++ (UIFont *)largeFont { return [WFStyle boldFontOfSize:15.0]; }
++ (UIFont *)smallFont { return [WFStyle fontOfSize:13.0]; }
++ (UIFont *)navigationFont { return [UIFont fontWithName:@"Gill Sans" size:17.0]; }
++ (UIFont *)boldFontOfSize:(CGFloat)size { return [UIFont fontWithName:@"Georgia" size:size]; }
++ (UIFont *)fontOfSize:(CGFloat)size { return [UIFont fontWithName:@"Georgia" size:size]; }
 
 + (UIView *)tableView:(UITableView *)tableView viewForSectionHeaderWithTitle:(NSString *)title {
     return [WFStyle tableView:tableView viewForSectionHeaderWithTitle:title color:NO];
@@ -66,21 +67,14 @@
 }
 
 + (UIView *) defaultTitleView {
-    //	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    //	imageView.frame = CGRectMake(0, 0, 100, 44);
-    //  return imageView;#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
-#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
-#define HSVA(h, s, v, a) [UIColor colorWithHue:h saturation:s brightness:v alpha:a]
-
-    
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top_nav_bar_logo.png"]];
-	imageView.frame = CGRectMake(0, 0, 120, 44);
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+	imageView.frame = CGRectMake(0, 0, 120, 30);
 	return imageView;
 }
 
 + (UIButton *) defaultTitleViewWithTarget:(id)target action:(SEL)action {
     UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [titleButton setFrame:CGRectMake(0, 0, 120, 44)];
+    [titleButton setFrame:CGRectMake(0, 0, 120, 30)];
     [titleButton setImage:[UIImage imageNamed:@"top_nav_bar_logo.png"] forState:UIControlStateNormal];
     [titleButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return titleButton;
@@ -92,7 +86,7 @@
     CGFloat locations[2] = { 0.0, 1.0 };
     CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
     UIColor *c1 = [WFStyle forecastLightTintColor];
-    UIColor *c2 = [WFStyle forecastTintColor];
+    UIColor *c2 = [WFStyle tintColor];
     CGFloat components[8] = { c1.red, c1.green, c1.blue, c1.alpha,
         c2.red, c2.green, c2.blue, c2.alpha, };
     CGGradientRef gradient = CGGradientCreateWithColorComponents(myColorspace, components, locations, 2);

@@ -8,13 +8,23 @@
 
 #import "ListTableView.h"
 
+static NSString *cellIdentifier = @"MessageCellIdentifier";
+
 @implementation ListTableView
 
 - (id)initWithFrame:(CGRect)frame {
     if((self = [super initWithFrame:frame])) {
-
+        [self registerClass:[MessageCell class] forCellReuseIdentifier:cellIdentifier];
+        self.delegate = self;
+        self.dataSource = self;
     }
     return self;
+}
+
+- (void) configureWithMessages:(NSArray *)aMessages {
+    messages = aMessages;
+    [self reloadData];
+    [self didFinishRefreshing];
 }
 
 #pragma mark - 
@@ -23,12 +33,19 @@
     return 1;
 }
 
-- (NSInteger)numberOfRowsInSection:(NSInteger)section {
-    return 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell configureWithMessage:messages[indexPath.row]];
+    return cell;
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailViewController *dVC = [[DetailViewController alloc] initWithMessage:messages[indexPath.row]];
+    []
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ListViewController.h"
+#import "CreateViewController.h"
 
 @interface ListViewController ()
 
@@ -16,16 +17,46 @@
 
 - (id)init {
     if((self = [super initWithNibName:nil bundle:nil])) {
-
+        self.navigationItem.titleView = [WFStyle defaultTitleView];
+        UIBarButtonItem *addMessageButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addMessage)];
+        [self.navigationItem setRightBarButtonItem:addMessageButton];
+        
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+		[self.navigationItem setBackBarButtonItem:backButton];
     }
     return self;
 }
 
+- (void) addMessage {
+    CreateViewController *cmVC = [[CreateViewController alloc] init];
+    [self.navigationController presentNavigationControllerWithViewController:cmVC animated:YES completion:NULL];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ListTableView *listTableView = [[ListTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    [listTableView loadTableWithMessages:self.messages];
+    listTableView = [[ListTableView alloc] initWithFrame:self.view.bounds];
+    listTableView.refreshDelegate = self;
     [self.view addSubview:listTableView];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadContent];
+}
+
+- (void) loadContent {
+    [listTableView configureWithMessages:messages];
+}
+
+- (void) refresh {
+    PFQuery *query = [Message query];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            messages = objects;
+            [self loadContent];
+        }
+    }];
 }
 
 @end

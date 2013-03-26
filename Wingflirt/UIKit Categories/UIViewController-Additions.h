@@ -10,7 +10,7 @@
 
 @interface UIViewController (UIViewController_Additions)
 
-- (void) presentModalNavigationControllerWithViewController:(UIViewController *)controller animated:(BOOL)animated;
+- (void) presentNavigationControllerWithViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 - (void) addLoadingView;
 - (void) addLoadingViewWithText:(NSString *)text;
 - (void) removeLoadingView;

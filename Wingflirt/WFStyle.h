@@ -17,13 +17,13 @@
 }
 
 + (UIColor *)bgColor;
-+ (UIColor *)textColor;
-
++ (UIColor *)elementColor;
++ (UIColor *)tintColor;
 
 + (UIColor *)forecastLighterTintColor;
 + (UIColor *)forecastLightTintColor;
 + (UIColor *)forecastSlightLightTintColor;
-+ (UIColor *)forecastTintColor;
+
 + (UIColor *)forecastSlightDarkTintColor;
 + (UIColor *)forecastDarkTintColor;
 
@@ -36,11 +36,11 @@
 + (UIColor *)forecastSlightDarkGrayColor;
 + (UIColor *)forecastDarkGrayColor;
 
-+ (UIFont *)giantFont;
++ (UIFont *)textViewFont;
 + (UIFont *)largeFont;
 + (UIFont *)smallFont;
-+ (UIFont *)boldForecastFontOfSize:(CGFloat)size;
-+ (UIFont *)forecastFontOfSize:(CGFloat)size;
++ (UIFont *)boldFontOfSize:(CGFloat)size;
++ (UIFont *)fontOfSize:(CGFloat)size;
 
 + (UIView *)tableView:(UITableView *)tableView viewForSectionHeaderWithTitle:(NSString *)title;
 + (UIView *)tableView:(UITableView *)tableView viewForSectionHeaderWithTitle:(NSString *)title color:(BOOL)isColored;

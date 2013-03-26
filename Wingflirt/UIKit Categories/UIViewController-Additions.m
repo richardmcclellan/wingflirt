@@ -11,25 +11,29 @@
 static const NSInteger loadingViewTag = 292;
 static NSString *controllerKey = @"controller";
 static NSString *animatedKey = @"animated";
-
+static NSString *completionKey = @"completion";
 
 @implementation UIViewController (UIViewController_Additions)
 
-- (void) presentModalNavigationControllerWithUserInfo:(NSDictionary *)userInfo {
+- (void) presentNavigationControllerWithUserInfo:(NSDictionary *)userInfo {
     if([[UIApplication sharedApplication] isIgnoringInteractionEvents]) {
-        [self performSelector:@selector(presentModalNavigationControllerWithUserInfo:) withObject:userInfo afterDelay:0.1];
+        [self performSelector:@selector(presentNavigationControllerWithUserInfo:) withObject:userInfo afterDelay:0.1];
     } else {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[userInfo objectForKey:controllerKey]];
-        [navigationController.navigationBar setTintColor:[WFStyle forecastTintColor]];
-        [self presentViewController:navigationController animated:[userInfo boolForKey:animatedKey] completion:NULL];
+        [navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"header.png"] forBarMetrics:UIBarMetricsDefault];
+        [navigationController.navigationBar setTintColor:[WFStyle tintColor]];
+        [self presentViewController:navigationController animated:[userInfo boolForKey:animatedKey] completion:[userInfo objectForKey:completionKey]];
     }
 }
 
-- (void) presentModalNavigationControllerWithViewController:(UIViewController *)controller animated:(BOOL)animated {
+- (void) presentNavigationControllerWithViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:2];
     [userInfo setObject:controller forKey:controllerKey];
     [userInfo setObject:[NSNumber numberWithBool:animated] forKey:animatedKey];
-    [self presentModalNavigationControllerWithUserInfo:userInfo];
+    if(completion != NULL) {
+        [userInfo setObject:completion forKey:completionKey];
+    }
+    [self presentNavigationControllerWithUserInfo:userInfo];
 }
          
 - (void) addLoadingView {
@@ -39,13 +43,13 @@ static NSString *animatedKey = @"animated";
 - (void) addLoadingViewWithText:(NSString *)text {
 	UIView *loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
     [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[loadingView setBackgroundColor:[WFStyle forecastLighterGrayColor]];
+//	[loadingView setBackgroundColor:[WFStyle forecastLighterGrayColor]];
 	[loadingView setTag:loadingViewTag];
 	
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	loadingLabel.backgroundColor = [UIColor clearColor];
-	loadingLabel.font = [WFStyle forecastFontOfSize:15.0];
-	loadingLabel.textColor = [WFStyle forecastDarkGrayColor];
+	loadingLabel.font = [WFStyle fontOfSize:15.0];
+//	loadingLabel.textColor = [WFStyle forecastDarkGrayColor];
 	[loadingLabel setText:text];
 	[loadingLabel sizeToFit];
     
