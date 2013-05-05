@@ -10,22 +10,21 @@
 
 @implementation BaseTableView
 
-@synthesize content;
-@synthesize cellClass;
-
 - (id) initWithFrame:(CGRect)frame style:(UITableViewStyle)newStyle {
     if((self = [super initWithFrame:frame style:newStyle])) {
         self.delegate = self;
         self.dataSource = self;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.showsVerticalScrollIndicator = YES;
-//        self.backgroundColor = [WFStyle forecastLighterGrayColor];
-//        self.separatorColor = [WFStyle forecastSlightLightGrayColor];
+        self.backgroundColor = [WFStyle lighterGrayColor];
         [self setContentInsetBottom:newStyle == UITableViewStylePlain ? -2 : 0];
     }
     return self;
 }
 
+- (void) scrollToBottom {
+    [self setContentOffset:CGPointMake(0, MAX(0, self.contentSize.height - self.height))];
+}
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;

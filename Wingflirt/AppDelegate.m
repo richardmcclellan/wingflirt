@@ -17,10 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    
+    [Message registerSubclass];
+    [Comment registerSubclass];
+    [Parse setApplicationId:@"4WwI8h61F4R0MFqgDCqTd4syrkprrnmpXxaGFtL6" clientKey:@"BlW9Lm7GdLDSuSTy1zrMAQ01653hxMBzgIAiEjKt"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];    
     
     ListViewController *listVC = [[ListViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:listVC];
@@ -29,14 +31,22 @@
     [self.navController.navigationBar setBackgroundImage:[UIImage imageNamed: @"header.png"] forBarMetrics:UIBarMetricsDefault];
     [self.window setRootViewController:self.navController];
     [self.window makeKeyAndVisible];
-    [Message registerSubclass];
-    [Comment registerSubclass];
-    [Parse setApplicationId:@"4WwI8h61F4R0MFqgDCqTd4syrkprrnmpXxaGFtL6" clientKey:@"BlW9Lm7GdLDSuSTy1zrMAQ01653hxMBzgIAiEjKt"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
     
     return YES;
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
 
 #pragma mark - Application's Documents directory
 

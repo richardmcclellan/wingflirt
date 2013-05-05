@@ -11,6 +11,8 @@
 
 @implementation Message
 
+@dynamic installation;
 @dynamic text;
+@dynamic comments;
 
 @end

@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Message.h"
+#import "Comment.h"
+#import "BaseViewController.h"
+#import "PostingView.h"
+#import "DetailTableView.h"
+#import "DetailHeaderView.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : BaseViewController <PostingViewDelegate> {
+    DetailTableView *detailTableView;
+    DetailHeaderView *detailHeaderView;
+    PostingView *postingView;
+    Message *message;
+}
+
+- (id)initWithMessage:(Message *)aMessage;
 
 @end

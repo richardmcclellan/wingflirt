@@ -7,9 +7,11 @@
 //
 
 #import <Parse/Parse.h>
+#import "Message.h"
 
 @interface Comment : PFObject <PFSubclassing>
 
+@property (nonatomic, strong) Message *message;
 @property (nonatomic, copy) NSString *text;
 
 @end

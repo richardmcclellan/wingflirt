@@ -43,13 +43,13 @@ static NSString *completionKey = @"completion";
 - (void) addLoadingViewWithText:(NSString *)text {
 	UIView *loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
     [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-//	[loadingView setBackgroundColor:[WFStyle forecastLighterGrayColor]];
+//	[loadingView setBackgroundColor:[WFStyle lighterGrayColor]];
 	[loadingView setTag:loadingViewTag];
 	
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	loadingLabel.backgroundColor = [UIColor clearColor];
 	loadingLabel.font = [WFStyle fontOfSize:15.0];
-//	loadingLabel.textColor = [WFStyle forecastDarkGrayColor];
+//	loadingLabel.textColor = [WFStyle darkGrayColor];
 	[loadingLabel setText:text];
 	[loadingLabel sizeToFit];
     

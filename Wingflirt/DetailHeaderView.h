@@ -1,17 +1,19 @@
 //
-//  MessageCell.h
+//  DetailHeaderView.h
 //  Wingflirt
 //
-//  Created by Richard McClellan on 3/20/13.
+//  Created by Richard McClellan on 3/30/13.
 //  Copyright (c) 2013 Richard McClellan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Message.h"
 
-@interface MessageCell : UITableViewCell
+@interface DetailHeaderView : UIView {
+    UILabel *headerLabel;
+}
+
 
 - (void) configureWithMessage:(Message *)message;
-+ (CGFloat)heightForMessage:(Message *)message;
 
 @end

@@ -22,13 +22,13 @@
 + (UIColor *)forecastDarkTintColor { return RGB(23.0, 64.0, 110.0); }
 
 + (UIColor *)forecastDarkBlueColor { return RGB(18.0, 113.0, 165.0); }
-+ (UIColor *)forecastLightestGrayColor { return [UIColor whiteColor]; }
-+ (UIColor *)forecastLighterGrayColor { return RGB(233, 233, 233); }
-+ (UIColor *)forecastLightGrayColor { return RGB(214, 214, 214); }
++ (UIColor *)lightestGrayColor { return [UIColor whiteColor]; }
++ (UIColor *)lighterGrayColor { return RGB(233, 233, 233); }
++ (UIColor *)lightGrayColor { return RGB(214, 214, 214); }
 + (UIColor *)forecastSlightLightGrayColor { return RGB(150, 150, 150); }
 + (UIColor *)forecastGrayColor { return RGB(120, 120, 120); }
 + (UIColor *)forecastSlightDarkGrayColor { return RGB(56, 56, 56); }
-+ (UIColor *)forecastDarkGrayColor { return RGB(33, 33, 33); }
++ (UIColor *)darkGrayColor { return RGB(33, 33, 33); }
 
 + (UIFont *)textViewFont { return [WFStyle boldFontOfSize:17.0]; }
 + (UIFont *)largeFont { return [WFStyle boldFontOfSize:15.0]; }
@@ -44,11 +44,11 @@
 + (UIView *)tableView:(UITableView *)tableView viewForSectionHeaderWithTitle:(NSString *)title color:(BOOL)isColored {
     if(title && ![title isEqualToString:@""]) {
         UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.width,24)];
-        [titleView setBackgroundColor:isColored ? [WFStyle forecastGrayColor] : [WFStyle forecastLightGrayColor]];
+        [titleView setBackgroundColor:isColored ? [WFStyle forecastGrayColor] : [WFStyle lightGrayColor]];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,0,tableView.width - 10,24)];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setTextColor:isColored ? [WFStyle forecastLightestGrayColor] : [WFStyle forecastDarkGrayColor]];
+        [label setTextColor:isColored ? [WFStyle lightestGrayColor] : [WFStyle darkGrayColor]];
         [label setFont:[WFStyle largeFont]];
         [label setText:title];
         [titleView addSubview:label];

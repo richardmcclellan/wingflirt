@@ -7,10 +7,11 @@
 //
 
 @interface Message : PFObject <PFSubclassing> {
-//    NSString *text;
+
 }
 
-//+ (NSString *)parseClassName;
+@property (nonatomic, strong) PFInstallation *installation;
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) NSMutableArray *comments;
 
 @end

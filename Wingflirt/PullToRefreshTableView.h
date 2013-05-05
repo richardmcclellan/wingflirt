@@ -23,13 +23,13 @@
 
 
 @interface PullToRefreshTableView : BaseTableView <UIScrollViewDelegate> {
-	id<PullToRefreshTableViewDelegate> __unsafe_unretained refreshDelegate; 
+	id<PullToRefreshTableViewDelegate> __weak refreshDelegate; 
 	RefreshHeaderView *refreshHeaderView;
 	BOOL checkForRefresh;
 	BOOL reloading;
 }
 
-@property (nonatomic, unsafe_unretained) id<PullToRefreshTableViewDelegate> refreshDelegate;
+@property (nonatomic, weak) id<PullToRefreshTableViewDelegate> refreshDelegate;
 @property (nonatomic, strong) RefreshHeaderView *refreshHeaderView;
 
 - (void)didFinishRefreshing;

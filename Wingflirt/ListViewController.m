@@ -34,14 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    listTableView = [[ListTableView alloc] initWithFrame:self.view.bounds];
-    listTableView.refreshDelegate = self;
+    listTableView = [[ListTableView alloc] initWithFrame:self.view.bounds viewDelegate:self];
     [self.view addSubview:listTableView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadContent];
+    [self refresh];
 }
 
 - (void) loadContent {
@@ -50,11 +50,18 @@
 
 - (void) refresh {
     PFQuery *query = [Message query];
-
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [query includeKey:@"comments"];
+    __block BOOL gettingCachedResult = [query hasCachedResult];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            NSLog(@"response %@", objects);
             messages = objects;
             [self loadContent];
+            if(!gettingCachedResult) {
+                [listTableView didFinishRefreshing];
+            }
+            gettingCachedResult = NO;
         }
     }];
 }

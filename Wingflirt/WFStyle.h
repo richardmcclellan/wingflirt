@@ -28,13 +28,13 @@
 + (UIColor *)forecastDarkTintColor;
 
 + (UIColor *)forecastDarkBlueColor;
-+ (UIColor *)forecastLightestGrayColor;
-+ (UIColor *)forecastLighterGrayColor;
-+ (UIColor *)forecastLightGrayColor;
++ (UIColor *)lightestGrayColor;
++ (UIColor *)lighterGrayColor;
++ (UIColor *)lightGrayColor;
 + (UIColor *)forecastSlightLightGrayColor;
 + (UIColor *)forecastGrayColor;
 + (UIColor *)forecastSlightDarkGrayColor;
-+ (UIColor *)forecastDarkGrayColor;
++ (UIColor *)darkGrayColor;
 
 + (UIFont *)textViewFont;
 + (UIFont *)largeFont;

@@ -19,7 +19,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame]))
 	{
-		self.backgroundColor = [WFStyle forecastLightestGrayColor];
+		self.backgroundColor = [WFStyle lightestGrayColor];
 		lastUpdatedLabel = [[UILabel alloc] initWithFrame:
 							CGRectMake(0.0f, frame.size.height - 30.0f,
 									   320.0f, 20.0f)];

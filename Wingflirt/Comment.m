@@ -11,6 +11,7 @@
 
 @implementation Comment
 
+@dynamic message;
 @dynamic text;
 
 @end

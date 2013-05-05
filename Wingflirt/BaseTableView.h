@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface BaseTableView : UITableView <UITableViewDelegate, UITableViewDataSource> {
-    NSArray *content;
-    Class cellClass;
+
 }
 
-@property (nonatomic, strong) NSArray *content;
-@property (nonatomic, assign) Class cellClass;
+- (void) scrollToBottom;
 
 @end

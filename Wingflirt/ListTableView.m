@@ -7,16 +7,19 @@
 //
 
 #import "ListTableView.h"
+#import "DetailViewController.h"
 
 static NSString *cellIdentifier = @"MessageCellIdentifier";
 
 @implementation ListTableView
 
-- (id)initWithFrame:(CGRect)frame {
-    if((self = [super initWithFrame:frame])) {
+- (id)initWithFrame:(CGRect)frame viewDelegate:(id)vDelegate {
+    if((self = [super initWithFrame:frame style:UITableViewStylePlain])) {
         [self registerClass:[MessageCell class] forCellReuseIdentifier:cellIdentifier];
-        self.delegate = self;
-        self.dataSource = self;
+        viewDelegate = vDelegate;
+        refreshDelegate = vDelegate;
+        
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -24,15 +27,10 @@ static NSString *cellIdentifier = @"MessageCellIdentifier";
 - (void) configureWithMessages:(NSArray *)aMessages {
     messages = aMessages;
     [self reloadData];
-    [self didFinishRefreshing];
 }
 
 #pragma mark - 
 #pragma mark UITableViewDelegate and UITableViewDataSource
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return messages.count;
 }
@@ -45,7 +43,11 @@ static NSString *cellIdentifier = @"MessageCellIdentifier";
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailViewController *dVC = [[DetailViewController alloc] initWithMessage:messages[indexPath.row]];
-    []
+    [viewDelegate delegatePushViewController:dVC animated:YES];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [MessageCell heightForMessage:messages[indexPath.row]];
 }
 
 @end

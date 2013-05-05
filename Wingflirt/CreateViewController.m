@@ -25,6 +25,7 @@
         
 		postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered block:^(id sender){
             Message *message = [Message object];
+            message.installation = [PFInstallation currentInstallation];
             message.text = messageTextView.text;
             [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded) {
@@ -47,18 +48,19 @@
     messageFrame.size.height -= 216;
     messageTextView = [[UITextView alloc] initWithFrame:messageFrame];
     messageTextView.layer.cornerRadius = 10.0;
+    messageTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [messageTextView setFont:[WFStyle largeFont]];
     [messageTextView setBackgroundColor:[WFStyle elementColor]];
     messageTextView.delegate = self;
     [messageTextView becomeFirstResponder];
     [self.view addSubview:messageTextView];
     
-    placeholderLabel = [[UILabel alloc] initWithFrame:CGRectInset(messageTextView.frame, 10, 10)];
+    placeholderLabel = [[UILabel alloc] initWithFrame:CGRectInset(messageTextView.frame,8,8)];
     [placeholderLabel setNumberOfLines:0];
     [placeholderLabel setBackgroundColor:[UIColor clearColor]];
     [placeholderLabel setTextColor:[UIColor grayColor]];
     [placeholderLabel setFont:[WFStyle largeFont]];
-    [placeholderLabel setText:@"Need some help responding to a text?  Paste it here!"];
+    [placeholderLabel setText:@"Need some help responding to a text?  Type or paste it here!"];
     [placeholderLabel sizeToFit];
     [self.view addSubview:placeholderLabel];
 }

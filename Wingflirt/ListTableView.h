@@ -8,11 +8,14 @@
 
 #import "PullToRefreshTableView.h"
 #import "MessageCell.h"
+#import "BaseViewDelegate.h"
 
 @interface ListTableView : PullToRefreshTableView {
+    id<BaseViewDelegate> __weak viewDelegate;
     NSArray *messages;
 }
 
+- (id)initWithFrame:(CGRect)frame viewDelegate:(id)vDelegate;
 - (void) configureWithMessages:(NSArray *)aMessages;
 
 @end

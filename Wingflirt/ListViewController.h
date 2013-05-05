@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ListTableView.h"
+#import "BaseViewController.h"
 
-@interface ListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PullToRefreshTableViewDelegate> {
+@interface ListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, PullToRefreshTableViewDelegate> {
     ListTableView *listTableView;
     NSArray *messages;
 }
